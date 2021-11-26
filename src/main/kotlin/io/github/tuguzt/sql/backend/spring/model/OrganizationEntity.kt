@@ -1,28 +1,29 @@
 package io.github.tuguzt.sql.backend.spring.model
 
+import io.github.tuguzt.sql.domain.model.Organization
 import javax.persistence.*
 
 @Entity
 @Table(name = "organization")
-class Organization(
+class OrganizationEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "organization_id")
     val id: Int,
 
     @Column(name = "organization_name", length = 100)
-    val name: String,
+    override val name: String,
 
     @Column(name = "organization_description")
-    val description: String,
+    override val description: String,
 
     @ManyToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "organization_type_id", referencedColumnName = "organization_type_id")
-    val type: OrganizationType,
+    override val type: OrganizationTypeEntity,
 
     @OneToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "test_document_id", referencedColumnName = "test_document_id")
-    val testDocument: TestDocument?,
+    override val testDocument: TestDocumentEntity?,
 
     @ManyToMany(cascade = [CascadeType.ALL])
     @JoinTable(
@@ -30,5 +31,9 @@ class Organization(
         joinColumns = [JoinColumn(name = "organization_id")],
         inverseJoinColumns = [JoinColumn(name = "game_project_id")],
     )
-    val gameProjects: Set<GameProject>,
-)
+    override val gameProjects: Set<GameProjectEntity>,
+
+    @OneToMany(cascade = [CascadeType.ALL])
+    @JoinColumn(name = "officer_id", referencedColumnName = "organization_id")
+    override val officers: Set<OfficerEntity>,
+) : Organization

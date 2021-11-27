@@ -1,6 +1,7 @@
 package io.github.tuguzt.sql.backend.spring.model
 
 import io.github.tuguzt.sql.domain.model.GameProjectDocumentation
+import org.springframework.data.util.ProxyUtils
 import javax.persistence.*
 
 @Entity
@@ -19,4 +20,15 @@ class GameProjectDocumentationEntity(
 
     @Column(name = "game_project_vision")
     override val vision: String,
-) : GameProjectDocumentation
+) : GameProjectDocumentation {
+    override fun equals(other: Any?): Boolean {
+        other ?: return false
+        if (this === other) return true
+        if (javaClass != ProxyUtils.getUserClass(other)) return false
+
+        other as GameProjectDocumentationEntity
+        return this.id == other.id
+    }
+
+    override fun hashCode() = javaClass.hashCode()
+}

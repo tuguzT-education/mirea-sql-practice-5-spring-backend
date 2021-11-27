@@ -1,6 +1,7 @@
 package io.github.tuguzt.sql.backend.spring.model
 
 import io.github.tuguzt.sql.domain.model.GameAsset
+import org.springframework.data.util.ProxyUtils
 import javax.persistence.*
 
 @Entity
@@ -27,4 +28,15 @@ class GameAssetEntity(
     @ManyToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "game_project_id", referencedColumnName = "game_project_id")
     val gameProject: GameProjectEntity,
-) : GameAsset
+) : GameAsset {
+    override fun equals(other: Any?): Boolean {
+        other ?: return false
+        if (this === other) return true
+        if (javaClass != ProxyUtils.getUserClass(other)) return false
+
+        other as GameAssetEntity
+        return this.id == other.id
+    }
+
+    override fun hashCode() = javaClass.hashCode()
+}

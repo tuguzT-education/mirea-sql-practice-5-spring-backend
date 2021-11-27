@@ -1,6 +1,7 @@
 package io.github.tuguzt.sql.backend.spring.model
 
 import io.github.tuguzt.sql.domain.model.Officer
+import org.springframework.data.util.ProxyUtils
 import javax.persistence.*
 
 @Entity
@@ -21,4 +22,15 @@ class OfficerEntity(
     @ManyToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "organization_id", referencedColumnName = "organization_id")
     val organization: OrganizationEntity,
-) : Officer
+) : Officer {
+    override fun equals(other: Any?): Boolean {
+        other ?: return false
+        if (this === other) return true
+        if (javaClass != ProxyUtils.getUserClass(other)) return false
+
+        other as OfficerEntity
+        return this.id == other.id
+    }
+
+    override fun hashCode() = javaClass.hashCode()
+}

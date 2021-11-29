@@ -10,7 +10,7 @@ class OfficerEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "officer_id")
-    val id: Int,
+    override val id: Int,
 
     @Column(name = "officer_name", length = 200)
     override val name: String,

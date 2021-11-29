@@ -10,7 +10,7 @@ class TestLevelEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "test_level_id")
-    val id: Int,
+    override val id: Int,
 
     @Column(name = "test_level_name", length = 20)
     override val name: String,

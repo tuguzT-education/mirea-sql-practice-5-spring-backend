@@ -10,7 +10,7 @@ class TestDocumentEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "test_document_id")
-    val id: Int,
+    override val id: Int,
 
     @Column(name = "test_document_data")
     override val data: String,

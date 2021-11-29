@@ -10,7 +10,7 @@ class GameProjectDocumentationEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "game_project_documentation_id")
-    val id: Int,
+    override val id: Int,
 
     @Column(name = "game_project_business_plan")
     override val businessPlan: String,

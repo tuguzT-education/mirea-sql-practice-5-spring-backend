@@ -10,7 +10,7 @@ class UserEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    val id: Int,
+    override val id: Int,
 
     @Column(name = "user_login", length = 20)
     override val login: String,

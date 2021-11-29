@@ -10,7 +10,7 @@ class GameProjectVersionEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "game_project_version_id")
-    val id: Int,
+    override val id: Int,
 
     @Column(name = "game_project_version_hash", length = 40)
     override val hash: String,

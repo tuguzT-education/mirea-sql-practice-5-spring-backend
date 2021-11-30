@@ -1,22 +1,26 @@
 package io.github.tuguzt.sql.backend.spring.model
 
 import io.github.tuguzt.sql.domain.model.GameProjectPlatform
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 import org.springframework.data.util.ProxyUtils
 import javax.persistence.*
 
 @Entity
 @Table(name = "game_project_platform")
+@Serializable
 class GameProjectPlatformEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "game_project_platform_id")
-    override val id: Int,
+    override val id: Int = 0,
 
     @Column(name = "game_project_platform_name", length = 20, unique = true)
     override val name: String,
 
+    @Transient
     @ManyToMany(cascade = [CascadeType.ALL], mappedBy = "platforms")
-    val gameProjects: Set<GameProjectEntity>,
+    val gameProjects: Set<GameProjectEntity> = setOf(),
 ) : GameProjectPlatform {
     override fun equals(other: Any?): Boolean {
         other ?: return false

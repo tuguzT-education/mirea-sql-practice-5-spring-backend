@@ -1,16 +1,19 @@
 package io.github.tuguzt.sql.backend.spring.model
 
 import io.github.tuguzt.sql.domain.model.Officer
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 import org.springframework.data.util.ProxyUtils
 import javax.persistence.*
 
 @Entity
 @Table(name = "officer")
+@Serializable
 class OfficerEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "officer_id")
-    override val id: Int,
+    override val id: Int = 0,
 
     @Column(name = "officer_name", length = 200)
     override val name: String,
@@ -19,9 +22,10 @@ class OfficerEntity(
     @JoinColumn(name = "officer_role_id", referencedColumnName = "officer_role_id")
     override val role: OfficerRoleEntity,
 
+    @Transient
     @ManyToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "organization_id", referencedColumnName = "organization_id")
-    val organization: OrganizationEntity,
+    val organization: OrganizationEntity? = null,
 ) : Officer {
     override fun equals(other: Any?): Boolean {
         other ?: return false

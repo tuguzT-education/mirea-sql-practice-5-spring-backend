@@ -1,16 +1,18 @@
 package io.github.tuguzt.sql.backend.spring.model
 
 import io.github.tuguzt.sql.domain.model.Organization
+import kotlinx.serialization.Serializable
 import org.springframework.data.util.ProxyUtils
 import javax.persistence.*
 
 @Entity
 @Table(name = "organization")
+@Serializable
 class OrganizationEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "organization_id")
-    override val id: Int,
+    override val id: Int = 0,
 
     @Column(name = "organization_name", length = 100, unique = true)
     override val name: String,

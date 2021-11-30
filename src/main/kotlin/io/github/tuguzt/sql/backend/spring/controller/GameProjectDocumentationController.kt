@@ -6,9 +6,8 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("game_project_documentations")
-class GameProjectDocumentationController(
-    override val service: GameProjectDocumentationService,
-) : EntityController<GameProjectDocumentationEntity, Int> {
+class GameProjectDocumentationController(override val service: GameProjectDocumentationService) :
+    EntityController<GameProjectDocumentationEntity, Int> {
 
     @GetMapping("all")
     override suspend fun getAll() = super.getAll()

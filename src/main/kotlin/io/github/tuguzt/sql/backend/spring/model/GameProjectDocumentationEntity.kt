@@ -1,11 +1,13 @@
 package io.github.tuguzt.sql.backend.spring.model
 
 import io.github.tuguzt.sql.domain.model.GameProjectDocumentation
+import kotlinx.serialization.Serializable
 import org.springframework.data.util.ProxyUtils
 import javax.persistence.*
 
 @Entity
 @Table(name = "game_project_documentation")
+@Serializable
 class GameProjectDocumentationEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

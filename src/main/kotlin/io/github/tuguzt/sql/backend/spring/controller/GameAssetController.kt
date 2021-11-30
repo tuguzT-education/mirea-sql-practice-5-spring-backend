@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("game_assets")
 class GameAssetController(override val service: GameAssetService) : EntityController<GameAssetEntity, Int>() {
-
     @GetMapping("all")
     override suspend fun getAll() = super.getAll()
 

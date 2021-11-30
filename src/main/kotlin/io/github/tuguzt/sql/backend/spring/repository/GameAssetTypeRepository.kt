@@ -12,6 +12,6 @@ import org.springframework.transaction.annotation.Transactional
 interface GameAssetTypeRepository : JpaRepository<GameAssetTypeEntity, Int> {
     @Transactional
     @Modifying
-    @Query("""update GameAssetTypeEntity ga set ga.name = :name where ga.id = :id""")
+    @Query("""update GameAssetTypeEntity as ga set ga.name = :name where ga.id = :id""")
     fun update(@Param("id") id: Int, @Param("name") name: String)
 }

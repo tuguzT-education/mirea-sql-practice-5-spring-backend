@@ -14,13 +14,13 @@ class GameProjectVersionController(override val service: GameProjectVersionServi
     override suspend fun getAll() = super.getAll()
 
     @PostMapping("insert")
-    override suspend fun insert(entity: GameProjectVersionEntity) = super.insert(entity)
+    override suspend fun insert(@RequestBody entity: GameProjectVersionEntity) = super.insert(entity)
 
     @PutMapping("update")
-    override suspend fun update(entity: GameProjectVersionEntity) = super.update(entity)
+    override suspend fun update(@RequestBody entity: GameProjectVersionEntity) = super.update(entity)
 
     @DeleteMapping("delete")
-    override suspend fun delete(entity: GameProjectVersionEntity) = super.delete(entity)
+    override suspend fun delete(@RequestBody entity: GameProjectVersionEntity) = super.delete(entity)
 
     @GetMapping("find/id")
     override suspend fun findById(id: Int) = super.findById(id)

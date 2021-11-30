@@ -6,19 +6,23 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("game_assets")
-class GameAssetController(private val service: GameAssetService) {
-    @GetMapping("all")
-    suspend fun all() = service.getAll()
+class GameAssetController(override val service: GameAssetService) : EntityController<GameAssetEntity, Int>() {
 
-    @PostMapping("save")
-    suspend fun save(@RequestBody gameAsset: GameAssetEntity) = service.save(gameAsset)
+    @GetMapping("all")
+    override suspend fun getAll() = super.getAll()
+
+    @PostMapping("insert")
+    override suspend fun insert(@RequestBody entity: GameAssetEntity) = super.insert(entity)
+
+    @PutMapping("update")
+    override suspend fun update(@RequestBody entity: GameAssetEntity) = super.update(entity)
 
     @DeleteMapping("delete")
-    suspend fun delete(@RequestBody gameAsset: GameAssetEntity) = service.delete(gameAsset)
+    override suspend fun delete(@RequestBody entity: GameAssetEntity) = super.delete(entity)
 
     @GetMapping("find/id")
-    suspend fun findById(@RequestBody id: Int) = service.findById(id)
+    override suspend fun findById(@RequestBody id: Int) = super.findById(id)
 
     @DeleteMapping("delete/id")
-    suspend fun deleteById(@RequestBody id: Int) = service.deleteById(id)
+    override suspend fun deleteById(@RequestBody id: Int) = super.deleteById(id)
 }

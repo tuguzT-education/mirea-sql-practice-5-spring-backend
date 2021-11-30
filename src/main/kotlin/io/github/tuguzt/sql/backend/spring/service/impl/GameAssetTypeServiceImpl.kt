@@ -10,11 +10,15 @@ import org.springframework.stereotype.Service
 class GameAssetTypeServiceImpl(private val repository: GameAssetTypeRepository) : GameAssetTypeService {
     override suspend fun getAll() = repository.findAll().toSet()
 
-    override suspend fun save(item: GameAssetTypeEntity) = repository.save(item)
+    override suspend fun insert(entity: GameAssetTypeEntity) = repository.save(entity)
 
-    override suspend fun delete(item: GameAssetTypeEntity) = repository.delete(item)
+    override suspend fun update(entity: GameAssetTypeEntity) = repository.update(entity.id, entity.name)
+
+    override suspend fun delete(entity: GameAssetTypeEntity) = repository.delete(entity)
 
     override suspend fun findById(id: Int) = repository.findById(id).orNull()
 
     override suspend fun deleteById(id: Int) = repository.deleteById(id)
+
+    override suspend fun exists(entity: GameAssetTypeEntity) = repository.existsById(entity.id)
 }

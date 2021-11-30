@@ -13,7 +13,7 @@ class GameAssetEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "game_asset_id")
-    override val id: Int,
+    override val id: Int = 0,
 
     @Column(name = "game_asset_name", length = 100, unique = true)
     override val name: String,

@@ -12,7 +12,7 @@ class OrganizationEntity(
     @Column(name = "organization_id")
     override val id: Int,
 
-    @Column(name = "organization_name", length = 100)
+    @Column(name = "organization_name", length = 100, unique = true)
     override val name: String,
 
     @Column(name = "organization_description")

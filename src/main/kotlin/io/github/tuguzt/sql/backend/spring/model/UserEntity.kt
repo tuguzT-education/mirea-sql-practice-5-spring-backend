@@ -12,7 +12,7 @@ class UserEntity(
     @Column(name = "user_id")
     override val id: Int,
 
-    @Column(name = "user_login", length = 20)
+    @Column(name = "user_login", length = 20, unique = true)
     override val login: String,
 
     @Column(name = "user_password_encrypted", length = 100)

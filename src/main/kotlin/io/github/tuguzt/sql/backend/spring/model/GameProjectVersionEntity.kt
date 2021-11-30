@@ -12,7 +12,7 @@ class GameProjectVersionEntity(
     @Column(name = "game_project_version_id")
     override val id: Int,
 
-    @Column(name = "game_project_version_hash", length = 40)
+    @Column(name = "game_project_version_hash", length = 40, unique = true)
     override val hash: String,
 
     @Column(name = "game_project_version_major")

@@ -12,7 +12,7 @@ class GameProjectPlatformEntity(
     @Column(name = "game_project_platform_id")
     override val id: Int,
 
-    @Column(name = "game_project_platform_name", length = 20)
+    @Column(name = "game_project_platform_name", length = 20, unique = true)
     override val name: String,
 
     @ManyToMany(cascade = [CascadeType.ALL], mappedBy = "platforms")

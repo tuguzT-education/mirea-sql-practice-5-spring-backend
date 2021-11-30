@@ -12,7 +12,7 @@ class TestLevelEntity(
     @Column(name = "test_level_id")
     override val id: Int,
 
-    @Column(name = "test_level_name", length = 20)
+    @Column(name = "test_level_name", length = 20, unique = true)
     override val name: String,
 ) : TestLevel {
     override fun equals(other: Any?): Boolean {

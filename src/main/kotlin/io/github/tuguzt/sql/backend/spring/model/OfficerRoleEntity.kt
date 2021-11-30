@@ -12,7 +12,7 @@ class OfficerRoleEntity(
     @Column(name = "officer_role_id")
     override val id: Int,
 
-    @Column(name = "officer_role_name", length = 20)
+    @Column(name = "officer_role_name", length = 20, unique = true)
     override val name: String,
 ) : OfficerRole {
     override fun equals(other: Any?): Boolean {

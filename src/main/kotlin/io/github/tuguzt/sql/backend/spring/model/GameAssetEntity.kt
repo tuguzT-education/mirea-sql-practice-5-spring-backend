@@ -12,13 +12,13 @@ class GameAssetEntity(
     @Column(name = "game_asset_id")
     override val id: Int,
 
-    @Column(name = "game_asset_name", length = 100)
+    @Column(name = "game_asset_name", length = 100, unique = true)
     override val name: String,
 
     @Column(name = "game_asset_description")
     override val description: String,
 
-    @Column(name = "game_asset_data")
+    @Column(name = "game_asset_data", unique = true)
     override val dataUri: String,
 
     @ManyToOne(cascade = [CascadeType.ALL])

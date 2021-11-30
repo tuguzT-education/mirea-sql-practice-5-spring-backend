@@ -12,7 +12,7 @@ class GameAssetTypeEntity(
     @Column(name = "game_asset_type_id")
     override val id: Int,
 
-    @Column(name = "game_asset_type_name", length = 100)
+    @Column(name = "game_asset_type_name", length = 100, unique = true)
     override val name: String,
 ) : GameAssetType {
     override fun equals(other: Any?): Boolean {

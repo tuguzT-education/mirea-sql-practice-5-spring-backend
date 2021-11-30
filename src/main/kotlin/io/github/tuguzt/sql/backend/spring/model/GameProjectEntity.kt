@@ -12,7 +12,7 @@ class GameProjectEntity(
     @Column(name = "game_project_id")
     override val id: Int,
 
-    @Column(name = "game_project_name", length = 100)
+    @Column(name = "game_project_name", length = 100, unique = true)
     override val name: String,
 
     @Column(name = "game_project_description")

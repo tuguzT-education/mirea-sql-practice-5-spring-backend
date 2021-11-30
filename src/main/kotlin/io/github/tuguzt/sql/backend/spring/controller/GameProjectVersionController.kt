@@ -2,10 +2,9 @@ package io.github.tuguzt.sql.backend.spring.controller
 
 import io.github.tuguzt.sql.backend.spring.model.GameProjectVersionEntity
 import io.github.tuguzt.sql.backend.spring.service.GameProjectVersionService
-import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
 
-@Controller
+@RestController
 @RequestMapping("game_project_versions")
 class GameProjectVersionController(override val service: GameProjectVersionService) :
     EntityController<GameProjectVersionEntity, Int> {

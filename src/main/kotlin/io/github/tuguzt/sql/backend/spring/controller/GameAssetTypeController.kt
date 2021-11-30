@@ -16,9 +16,9 @@ class GameAssetTypeController(private val service: GameAssetTypeService) {
     @DeleteMapping("delete")
     suspend fun delete(@RequestBody gameAssetType: GameAssetTypeEntity) = service.delete(gameAssetType)
 
-    @PostMapping("find/id")
+    @GetMapping("find/id")
     suspend fun findById(@RequestBody id: Int) = service.findById(id)
 
-    @PostMapping("delete/id")
+    @DeleteMapping("delete/id")
     suspend fun deleteById(@RequestBody id: Int) = service.deleteById(id)
 }

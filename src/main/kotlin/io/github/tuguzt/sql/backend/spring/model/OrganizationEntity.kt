@@ -1,6 +1,7 @@
 package io.github.tuguzt.sql.backend.spring.model
 
 import io.github.tuguzt.sql.domain.model.Organization
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.springframework.data.util.ProxyUtils
 import javax.persistence.*
@@ -24,10 +25,12 @@ class OrganizationEntity(
     @JoinColumn(name = "organization_type_id", referencedColumnName = "organization_type_id")
     override val type: OrganizationTypeEntity,
 
+    @SerialName("test_document")
     @OneToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "test_document_id", referencedColumnName = "test_document_id")
     override val testDocument: TestDocumentEntity?,
 
+    @SerialName("game_projects")
     @ManyToMany(cascade = [CascadeType.ALL])
     @JoinTable(
         name = "organization_to_game_project",

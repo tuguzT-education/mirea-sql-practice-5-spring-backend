@@ -1,6 +1,7 @@
 package io.github.tuguzt.sql.backend.spring.model
 
 import io.github.tuguzt.sql.domain.model.GameProjectDocumentation
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.springframework.data.util.ProxyUtils
 import javax.persistence.*
@@ -14,9 +15,11 @@ class GameProjectDocumentationEntity(
     @Column(name = "game_project_documentation_id")
     override val id: Int = 0,
 
+    @SerialName("business_plan")
     @Column(name = "game_project_business_plan")
     override val businessPlan: String,
 
+    @SerialName("design_document")
     @Column(name = "game_project_design_document")
     override val designDocument: String,
 

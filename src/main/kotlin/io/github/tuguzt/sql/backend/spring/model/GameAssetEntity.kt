@@ -1,6 +1,7 @@
 package io.github.tuguzt.sql.backend.spring.model
 
 import io.github.tuguzt.sql.domain.model.GameAsset
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 import org.springframework.data.util.ProxyUtils
@@ -21,6 +22,7 @@ class GameAssetEntity(
     @Column(name = "game_asset_description")
     override val description: String,
 
+    @SerialName("data_uri")
     @Column(name = "game_asset_data", unique = true)
     override val dataUri: String,
 

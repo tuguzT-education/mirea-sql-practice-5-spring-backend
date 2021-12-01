@@ -15,16 +15,14 @@ class GameAssetServiceImpl(private val repository: GameAssetRepository) : GameAs
     override suspend fun getAll() = withContext(Dispatchers.IO) { repository.findAll().toSet() }
 
     override suspend fun insert(entity: GameAssetEntity): GameAssetEntity {
-        val gameProject = requireNotNull(entity.gameProject) { "Game object is required" }
         val result = withContext(Dispatchers.IO) {
-            repository.rawInsert(entity.name, entity.description, entity.dataUri, entity.type.id, gameProject.id)
+            repository.rawInsert(entity.name, entity.description, entity.dataUri, entity.type.id, entity.gameProject.id)
             repository.findByName(entity.name)
         }
         return requireNotNull(result)
     }
 
     override suspend fun update(entity: GameAssetEntity) {
-        val gameProject = requireNotNull(entity.gameProject) { "Item cannot be in database" }
         withContext(Dispatchers.IO) {
             repository.update(
                 entity.id,
@@ -32,7 +30,7 @@ class GameAssetServiceImpl(private val repository: GameAssetRepository) : GameAs
                 entity.description,
                 entity.dataUri,
                 entity.type.id,
-                gameProject.id,
+                entity.gameProject.id,
             )
         }
     }

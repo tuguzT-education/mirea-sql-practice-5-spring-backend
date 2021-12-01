@@ -3,7 +3,6 @@ package io.github.tuguzt.sql.backend.spring.model
 import io.github.tuguzt.sql.domain.model.GameAsset
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import org.springframework.data.util.ProxyUtils
 import javax.persistence.*
 
@@ -30,10 +29,10 @@ class GameAssetEntity(
     @JoinColumn(name = "game_asset_type_id", referencedColumnName = "game_asset_type_id")
     override val type: GameAssetTypeEntity,
 
-    @Transient
+    @SerialName("game_project")
     @ManyToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "game_project_id", referencedColumnName = "game_project_id")
-    val gameProject: GameProjectEntity? = null,
+    override val gameProject: GameProjectEntity,
 ) : GameAsset {
     override fun equals(other: Any?): Boolean {
         other ?: return false

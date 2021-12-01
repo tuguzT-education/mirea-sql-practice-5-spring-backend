@@ -14,14 +14,16 @@ interface GameProjectVersionRepository : JpaRepository<GameProjectVersionEntity,
     @Modifying
     @Query(
         """
-            update GameProjectVersionEntity as gp
-                set gp.hash = :hash,
-                    gp.major = :major,
-                    gp.minor = :minor,
-                    gp.patch = :patch,
-                    gp.metadata = :metadata
-                where gp.id = :id
-        """
+            update game_project_version as gp
+                set gp.game_project_version_hash = :hash,
+                    gp.game_project_version_major = :major,
+                    gp.game_project_version_minor = :minor,
+                    gp.game_project_version_patch = :patch,
+                    gp.game_project_version_metadata = :metadata,
+                    gp.game_project_id = :gameProjectId
+                where gp.game_project_version_id = :id
+        """,
+        nativeQuery = true,
     )
     fun update(
         @Param("id") id: Int,
@@ -30,5 +32,6 @@ interface GameProjectVersionRepository : JpaRepository<GameProjectVersionEntity,
         @Param("minor") minor: Int,
         @Param("patch") patch: Int,
         @Param("metadata") metadata: String,
+        @Param("gameProjectId") gameProjectId: Int,
     )
 }

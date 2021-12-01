@@ -2,7 +2,6 @@ package io.github.tuguzt.sql.backend.spring.model
 
 import io.github.tuguzt.sql.domain.model.Officer
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import org.springframework.data.util.ProxyUtils
 import javax.persistence.*
 
@@ -22,10 +21,9 @@ class OfficerEntity(
     @JoinColumn(name = "officer_role_id", referencedColumnName = "officer_role_id")
     override val role: OfficerRoleEntity,
 
-    @Transient
     @ManyToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "organization_id", referencedColumnName = "organization_id")
-    val organization: OrganizationEntity? = null,
+    override val organization: OrganizationEntity,
 ) : Officer {
     override fun equals(other: Any?): Boolean {
         other ?: return false

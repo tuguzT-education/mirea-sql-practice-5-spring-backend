@@ -2,7 +2,6 @@ package io.github.tuguzt.sql.backend.spring.model
 
 import io.github.tuguzt.sql.domain.model.GameProject
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import org.springframework.data.util.ProxyUtils
 import javax.persistence.*
 
@@ -41,9 +40,8 @@ class GameProjectEntity(
     )
     override val platforms: Set<GameProjectPlatformEntity>,
 
-    @Transient
     @ManyToMany(cascade = [CascadeType.ALL], mappedBy = "gameProjects")
-    val organizations: Set<OrganizationEntity> = setOf(),
+    override val organizations: Set<OrganizationEntity>,
 ) : GameProject {
     override fun equals(other: Any?): Boolean {
         other ?: return false

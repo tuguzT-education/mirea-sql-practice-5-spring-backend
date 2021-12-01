@@ -1,8 +1,8 @@
 package io.github.tuguzt.sql.backend.spring.model
 
 import io.github.tuguzt.sql.domain.model.GameProjectVersion
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import org.springframework.data.util.ProxyUtils
 import javax.persistence.*
 
@@ -30,10 +30,10 @@ class GameProjectVersionEntity(
     @Column(name = "game_project_version_metadata", length = 255)
     override val metadata: String,
 
-    @Transient
+    @SerialName("game_project")
     @ManyToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "game_project_id", referencedColumnName = "game_project_id")
-    val gameProject: GameProjectEntity? = null,
+    override val gameProject: GameProjectEntity,
 ) : GameProjectVersion {
     override fun equals(other: Any?): Boolean {
         other ?: return false

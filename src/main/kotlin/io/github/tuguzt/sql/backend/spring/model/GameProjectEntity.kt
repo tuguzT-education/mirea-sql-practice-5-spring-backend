@@ -24,13 +24,11 @@ class GameProjectEntity(
     @JoinColumn(name = "game_project_documentation_id", referencedColumnName = "game_project_documentation_id")
     override val documentation: GameProjectDocumentationEntity,
 
-    @OneToMany(cascade = [CascadeType.ALL])
-    @JoinColumn(name = "game_asset_id", referencedColumnName = "game_project_id")
-    override val assets: Set<GameAssetEntity>,
+    @OneToMany(cascade = [CascadeType.ALL], mappedBy = "gameProject")
+    override val assets: MutableSet<GameAssetEntity>,
 
-    @OneToMany(cascade = [CascadeType.ALL])
-    @JoinColumn(name = "game_version_id", referencedColumnName = "game_project_id")
-    override val versions: Set<GameProjectVersionEntity>,
+    @OneToMany(cascade = [CascadeType.ALL], mappedBy = "gameProject")
+    override val versions: MutableSet<GameProjectVersionEntity>,
 
     @ManyToMany(cascade = [CascadeType.ALL])
     @JoinTable(
@@ -38,10 +36,10 @@ class GameProjectEntity(
         joinColumns = [JoinColumn(name = "game_project_id")],
         inverseJoinColumns = [JoinColumn(name = "game_project_platform_id")],
     )
-    override val platforms: Set<GameProjectPlatformEntity>,
+    override val platforms: MutableSet<GameProjectPlatformEntity>,
 
     @ManyToMany(cascade = [CascadeType.ALL], mappedBy = "gameProjects")
-    override val organizations: Set<OrganizationEntity>,
+    override val organizations: MutableSet<OrganizationEntity>,
 ) : GameProject {
     override fun equals(other: Any?): Boolean {
         other ?: return false

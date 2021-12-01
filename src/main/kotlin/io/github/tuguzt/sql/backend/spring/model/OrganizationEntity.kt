@@ -37,11 +37,10 @@ class OrganizationEntity(
         joinColumns = [JoinColumn(name = "organization_id")],
         inverseJoinColumns = [JoinColumn(name = "game_project_id")],
     )
-    override val gameProjects: Set<GameProjectEntity>,
+    override val gameProjects: MutableSet<GameProjectEntity>,
 
-    @OneToMany(cascade = [CascadeType.ALL])
-    @JoinColumn(name = "officer_id", referencedColumnName = "organization_id")
-    override val officers: Set<OfficerEntity>,
+    @OneToMany(cascade = [CascadeType.ALL], mappedBy = "organization")
+    override val officers: MutableSet<OfficerEntity>,
 ) : Organization {
     override fun equals(other: Any?): Boolean {
         other ?: return false

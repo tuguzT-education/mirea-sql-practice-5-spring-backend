@@ -20,7 +20,7 @@ class GameProjectPlatformEntity(
 
     @SerialName("game_projects")
     @ManyToMany(cascade = [CascadeType.ALL], mappedBy = "platforms")
-    override val gameProjects: Set<GameProjectEntity>,
+    override val gameProjects: MutableSet<GameProjectEntity>,
 ) : GameProjectPlatform {
     override fun equals(other: Any?): Boolean {
         other ?: return false

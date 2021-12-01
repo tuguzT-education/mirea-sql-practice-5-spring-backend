@@ -46,7 +46,7 @@ interface GameAssetRepository : JpaRepository<GameAssetEntity, Int> {
                 game_asset_data_uri,
                 game_asset_type_id,
                 game_project_id
-            ) value (:name, :description, :dataUri, :typeId, :gameProjectId)
+            ) values (:name, :description, :dataUri, :typeId, :gameProjectId)
         """,
         nativeQuery = true,
     )

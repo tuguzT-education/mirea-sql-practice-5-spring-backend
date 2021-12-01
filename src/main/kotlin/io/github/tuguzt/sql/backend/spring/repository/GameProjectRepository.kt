@@ -40,7 +40,7 @@ interface GameProjectRepository : JpaRepository<GameProjectEntity, Int> {
                 game_project_name,
                 game_project_description,
                 game_project_documentation_id
-            ) value (:name, :description, :documentationId)
+            ) values (:name, :description, :documentationId)
         """,
         nativeQuery = true,
     )

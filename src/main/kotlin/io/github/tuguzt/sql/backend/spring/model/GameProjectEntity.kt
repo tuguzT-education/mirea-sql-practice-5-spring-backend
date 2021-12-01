@@ -24,22 +24,22 @@ class GameProjectEntity(
     @JoinColumn(name = "game_project_documentation_id", referencedColumnName = "game_project_documentation_id")
     override val documentation: GameProjectDocumentationEntity,
 
-    @OneToMany(cascade = [CascadeType.ALL], mappedBy = "gameProject")
-    override val assets: MutableSet<GameAssetEntity>,
+    @OneToMany(cascade = [CascadeType.ALL], mappedBy = "gameProject", fetch = FetchType.EAGER)
+    override val assets: Set<GameAssetEntity>,
 
-    @OneToMany(cascade = [CascadeType.ALL], mappedBy = "gameProject")
-    override val versions: MutableSet<GameProjectVersionEntity>,
+    @OneToMany(cascade = [CascadeType.ALL], mappedBy = "gameProject", fetch = FetchType.EAGER)
+    override val versions: Set<GameProjectVersionEntity>,
 
-    @ManyToMany(cascade = [CascadeType.ALL])
+    @ManyToMany(cascade = [CascadeType.ALL], fetch = FetchType.EAGER)
     @JoinTable(
         name = "platform_to_game_project",
         joinColumns = [JoinColumn(name = "game_project_id")],
         inverseJoinColumns = [JoinColumn(name = "game_project_platform_id")],
     )
-    override val platforms: MutableSet<GameProjectPlatformEntity>,
+    override val platforms: Set<GameProjectPlatformEntity>,
 
-    @ManyToMany(cascade = [CascadeType.ALL], mappedBy = "gameProjects")
-    override val organizations: MutableSet<OrganizationEntity>,
+    @ManyToMany(cascade = [CascadeType.ALL], mappedBy = "gameProjects", fetch = FetchType.EAGER)
+    override val organizations: Set<OrganizationEntity>,
 ) : GameProject {
     override fun equals(other: Any?): Boolean {
         other ?: return false

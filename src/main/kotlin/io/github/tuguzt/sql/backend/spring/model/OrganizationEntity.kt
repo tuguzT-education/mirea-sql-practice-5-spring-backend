@@ -31,16 +31,16 @@ class OrganizationEntity(
     override val testDocument: TestDocumentEntity?,
 
     @SerialName("game_projects")
-    @ManyToMany(cascade = [CascadeType.ALL])
+    @ManyToMany(cascade = [CascadeType.ALL], fetch = FetchType.EAGER)
     @JoinTable(
         name = "organization_to_game_project",
         joinColumns = [JoinColumn(name = "organization_id")],
         inverseJoinColumns = [JoinColumn(name = "game_project_id")],
     )
-    override val gameProjects: MutableSet<GameProjectEntity>,
+    override val gameProjects: Set<GameProjectEntity>,
 
-    @OneToMany(cascade = [CascadeType.ALL], mappedBy = "organization")
-    override val officers: MutableSet<OfficerEntity>,
+    @OneToMany(cascade = [CascadeType.ALL], mappedBy = "organization", fetch = FetchType.EAGER)
+    override val officers: Set<OfficerEntity>,
 ) : Organization {
     override fun equals(other: Any?): Boolean {
         other ?: return false

@@ -16,7 +16,15 @@ class GameProjectVersionServiceImpl(private val repository: GameProjectVersionRe
         withContext(Dispatchers.IO) { repository.save(entity) }
 
     override suspend fun update(entity: GameProjectVersionEntity) = withContext(Dispatchers.IO) {
-        repository.update(entity.id, entity.hash, entity.major, entity.minor, entity.patch, entity.metadata, entity.gameProject.id)
+        repository.update(
+            entity.id,
+            entity.hash,
+            entity.major,
+            entity.minor,
+            entity.patch,
+            entity.metadata,
+            entity.gameProject.id
+        )
     }
 
     override suspend fun delete(entity: GameProjectVersionEntity) =

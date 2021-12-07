@@ -19,7 +19,7 @@ class GameProjectPlatformEntity(
     override var name: String,
 
     @SerialName("game_projects")
-    @ManyToMany(cascade = [CascadeType.ALL], mappedBy = "platforms")
+    @ManyToMany(cascade = [CascadeType.MERGE], mappedBy = "platforms", fetch = FetchType.EAGER)
     override val gameProjects: Set<GameProjectEntity> = setOf(),
 ) : GameProjectPlatform {
     override fun equals(other: Any?): Boolean {

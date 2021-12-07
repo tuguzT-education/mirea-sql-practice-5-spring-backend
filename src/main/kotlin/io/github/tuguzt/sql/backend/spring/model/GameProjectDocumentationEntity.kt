@@ -17,14 +17,14 @@ class GameProjectDocumentationEntity(
 
     @SerialName("business_plan")
     @Column(name = "game_project_business_plan")
-    override val businessPlan: String,
+    override var businessPlan: String,
 
     @SerialName("design_document")
     @Column(name = "game_project_design_document")
-    override val designDocument: String,
+    override var designDocument: String,
 
     @Column(name = "game_project_vision")
-    override val vision: String,
+    override var vision: String,
 ) : GameProjectDocumentation {
     override fun equals(other: Any?): Boolean {
         other ?: return false

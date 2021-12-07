@@ -15,11 +15,11 @@ class TestDocumentEntity(
     override val id: Int = 0,
 
     @Column(name = "test_document_data")
-    override val data: String,
+    override var data: String,
 
     @ManyToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "test_level_id", referencedColumnName = "test_level_id")
-    override val level: TestLevelEntity,
+    override var level: TestLevelEntity,
 ) : TestDocument {
     override fun equals(other: Any?): Boolean {
         other ?: return false

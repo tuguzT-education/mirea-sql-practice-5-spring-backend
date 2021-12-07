@@ -16,23 +16,23 @@ class GameAssetEntity(
     override val id: Int = 0,
 
     @Column(name = "game_asset_name", length = 100, unique = true)
-    override val name: String,
+    override var name: String,
 
     @Column(name = "game_asset_description")
-    override val description: String,
+    override var description: String,
 
     @SerialName("data_uri")
     @Column(name = "game_asset_data", unique = true)
-    override val dataUri: String,
+    override var dataUri: String,
 
     @ManyToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "game_asset_type_id", referencedColumnName = "game_asset_type_id")
-    override val type: GameAssetTypeEntity,
+    override var type: GameAssetTypeEntity,
 
     @SerialName("game_project")
     @ManyToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "game_project_id", referencedColumnName = "game_project_id")
-    override val gameProject: GameProjectEntity,
+    override var gameProject: GameProjectEntity,
 ) : GameAsset {
     override fun equals(other: Any?): Boolean {
         other ?: return false

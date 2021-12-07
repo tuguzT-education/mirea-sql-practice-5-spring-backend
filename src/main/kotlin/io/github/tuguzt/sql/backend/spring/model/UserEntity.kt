@@ -16,15 +16,15 @@ class UserEntity(
     override val id: Int = 0,
 
     @Column(name = "user_login", length = 20, unique = true)
-    override val login: String,
+    override var login: String,
 
     @SerialName("password_encrypted")
     @Column(name = "user_password_encrypted", length = 100)
-    override val passwordEncrypted: String,
+    override var passwordEncrypted: String,
 
     @OneToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "officer_id", referencedColumnName = "officer_id")
-    override val officer: OfficerEntity?,
+    override var officer: OfficerEntity?,
 ) : User {
     override fun equals(other: Any?): Boolean {
         other ?: return false

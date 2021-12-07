@@ -10,11 +10,8 @@ class GameAssetTypeController(override val service: GameAssetTypeService) : Enti
     @GetMapping("all")
     override suspend fun getAll() = super.getAll()
 
-    @PostMapping("insert")
-    override suspend fun insert(@RequestBody entity: GameAssetTypeEntity) = super.insert(entity)
-
-    @PutMapping("update")
-    override suspend fun update(@RequestBody entity: GameAssetTypeEntity) = super.update(entity)
+    @PostMapping("save")
+    override suspend fun save(@RequestBody entity: GameAssetTypeEntity) = super.save(entity)
 
     @DeleteMapping("delete")
     override suspend fun delete(@RequestBody entity: GameAssetTypeEntity) = super.delete(entity)

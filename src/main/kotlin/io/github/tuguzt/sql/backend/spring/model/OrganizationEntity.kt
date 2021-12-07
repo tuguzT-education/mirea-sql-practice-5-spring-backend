@@ -16,19 +16,19 @@ class OrganizationEntity(
     override val id: Int = 0,
 
     @Column(name = "organization_name", length = 100, unique = true)
-    override val name: String,
+    override var name: String,
 
     @Column(name = "organization_description")
-    override val description: String,
+    override var description: String,
 
     @ManyToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "organization_type_id", referencedColumnName = "organization_type_id")
-    override val type: OrganizationTypeEntity,
+    override var type: OrganizationTypeEntity,
 
     @SerialName("test_document")
     @OneToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "test_document_id", referencedColumnName = "test_document_id")
-    override val testDocument: TestDocumentEntity?,
+    override var testDocument: TestDocumentEntity?,
 
     @SerialName("game_projects")
     @ManyToMany(cascade = [CascadeType.ALL], fetch = FetchType.EAGER)

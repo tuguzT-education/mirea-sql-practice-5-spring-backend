@@ -15,7 +15,7 @@ class GameAssetTypeEntity(
     override val id: Int = 0,
 
     @Column(name = "game_asset_type_name", length = 100, unique = true)
-    override val name: String,
+    override var name: String,
 ) : GameAssetType {
     override fun equals(other: Any?): Boolean {
         other ?: return false

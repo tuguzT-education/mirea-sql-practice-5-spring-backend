@@ -15,7 +15,7 @@ class OrganizationTypeEntity(
     override val id: Int = 0,
 
     @Column(name = "organization_type_name", length = 20, unique = true)
-    override val name: String,
+    override var name: String,
 ) : OrganizationType {
     override fun equals(other: Any?): Boolean {
         other ?: return false

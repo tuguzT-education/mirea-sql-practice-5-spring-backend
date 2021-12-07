@@ -12,11 +12,8 @@ class GameProjectPlatformController(override val service: GameProjectPlatformSer
     @GetMapping("all")
     override suspend fun getAll() = super.getAll()
 
-    @PostMapping("insert")
-    override suspend fun insert(@RequestBody entity: GameProjectPlatformEntity) = super.insert(entity)
-
-    @PutMapping("update")
-    override suspend fun update(@RequestBody entity: GameProjectPlatformEntity) = super.update(entity)
+    @PostMapping("save")
+    override suspend fun save(@RequestBody entity: GameProjectPlatformEntity) = super.save(entity)
 
     @DeleteMapping("delete")
     override suspend fun delete(@RequestBody entity: GameProjectPlatformEntity) = super.delete(entity)

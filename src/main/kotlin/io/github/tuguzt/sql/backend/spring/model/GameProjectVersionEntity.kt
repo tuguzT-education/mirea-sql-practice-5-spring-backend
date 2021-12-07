@@ -16,24 +16,24 @@ class GameProjectVersionEntity(
     override val id: Int = 0,
 
     @Column(name = "game_project_version_hash", length = 40, unique = true)
-    override val hash: String,
+    override var hash: String,
 
     @Column(name = "game_project_version_major")
-    override val major: Int,
+    override var major: Int,
 
     @Column(name = "game_project_version_minor")
-    override val minor: Int,
+    override var minor: Int,
 
     @Column(name = "game_project_version_patch")
-    override val patch: Int,
+    override var patch: Int,
 
     @Column(name = "game_project_version_metadata", length = 255)
-    override val metadata: String,
+    override var metadata: String,
 
     @SerialName("game_project")
     @ManyToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "game_project_id", referencedColumnName = "game_project_id")
-    override val gameProject: GameProjectEntity,
+    override var gameProject: GameProjectEntity,
 ) : GameProjectVersion {
     override fun equals(other: Any?): Boolean {
         other ?: return false

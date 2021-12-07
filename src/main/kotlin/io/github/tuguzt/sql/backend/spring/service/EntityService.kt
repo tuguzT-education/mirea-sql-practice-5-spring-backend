@@ -5,9 +5,7 @@ import io.github.tuguzt.sql.domain.model.Identifiable
 sealed interface EntityService<T : Identifiable<I>, I : Any> {
     suspend fun getAll(): Set<T>
 
-    suspend fun insert(entity: T): T
-
-    suspend fun update(entity: T)
+    suspend fun save(entity: T): T
 
     suspend fun delete(entity: T)
 

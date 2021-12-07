@@ -16,7 +16,7 @@ class GameProjectPlatformEntity(
     override val id: Int = 0,
 
     @Column(name = "game_project_platform_name", length = 20, unique = true)
-    override val name: String,
+    override var name: String,
 
     @SerialName("game_projects")
     @ManyToMany(cascade = [CascadeType.ALL], mappedBy = "platforms", fetch = FetchType.EAGER)

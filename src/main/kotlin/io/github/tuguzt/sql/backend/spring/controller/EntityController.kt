@@ -8,9 +8,7 @@ sealed interface EntityController<T : Identifiable<I>, I : Any> {
 
     suspend fun getAll(): Set<T> = service.getAll()
 
-    suspend fun insert(entity: T): T = service.insert(entity)
-
-    suspend fun update(entity: T): Unit = service.update(entity)
+    suspend fun save(entity: T): T = service.save(entity)
 
     suspend fun delete(entity: T): Unit = service.delete(entity)
 

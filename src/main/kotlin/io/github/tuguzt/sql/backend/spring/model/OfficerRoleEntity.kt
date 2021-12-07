@@ -15,7 +15,7 @@ class OfficerRoleEntity(
     override val id: Int = 0,
 
     @Column(name = "officer_role_name", length = 20, unique = true)
-    override val name: String,
+    override var name: String,
 ) : OfficerRole {
     override fun equals(other: Any?): Boolean {
         other ?: return false

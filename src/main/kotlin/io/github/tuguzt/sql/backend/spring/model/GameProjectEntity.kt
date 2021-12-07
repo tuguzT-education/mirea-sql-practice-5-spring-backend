@@ -15,14 +15,14 @@ class GameProjectEntity(
     override val id: Int = 0,
 
     @Column(name = "game_project_name", length = 100, unique = true)
-    override val name: String,
+    override var name: String,
 
     @Column(name = "game_project_description")
-    override val description: String,
+    override var description: String,
 
     @OneToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "game_project_documentation_id", referencedColumnName = "game_project_documentation_id")
-    override val documentation: GameProjectDocumentationEntity,
+    override var documentation: GameProjectDocumentationEntity,
 
     @OneToMany(cascade = [CascadeType.ALL], mappedBy = "gameProject", fetch = FetchType.EAGER)
     override val assets: Set<GameAssetEntity>,

@@ -1,11 +1,11 @@
 package io.github.tuguzt.sql.backend.spring.service.impl
 
 import io.github.tuguzt.sql.backend.spring.model.GameAssetEntity
-import io.github.tuguzt.sql.backend.spring.orNull
 import io.github.tuguzt.sql.backend.spring.repository.GameAssetRepository
 import io.github.tuguzt.sql.backend.spring.service.GameAssetService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
 @Service
@@ -14,30 +14,11 @@ class GameAssetServiceImpl(private val repository: GameAssetRepository) : GameAs
 
     override suspend fun getAll() = withContext(Dispatchers.IO) { repository.findAll().toSet() }
 
-    override suspend fun insert(entity: GameAssetEntity): GameAssetEntity {
-        val result = withContext(Dispatchers.IO) {
-            repository.rawInsert(entity.name, entity.description, entity.dataUri, entity.type.id, entity.gameProject.id)
-            repository.findByName(entity.name)
-        }
-        return requireNotNull(result)
-    }
-
-    override suspend fun update(entity: GameAssetEntity) {
-        withContext(Dispatchers.IO) {
-            repository.update(
-                entity.id,
-                entity.name,
-                entity.description,
-                entity.dataUri,
-                entity.type.id,
-                entity.gameProject.id,
-            )
-        }
-    }
+    override suspend fun save(entity: GameAssetEntity) = withContext(Dispatchers.IO) { repository.save(entity) }
 
     override suspend fun delete(entity: GameAssetEntity) = withContext(Dispatchers.IO) { repository.delete(entity) }
 
-    override suspend fun findById(id: Int) = withContext(Dispatchers.IO) { repository.findById(id).orNull() }
+    override suspend fun findById(id: Int) = withContext(Dispatchers.IO) { repository.findByIdOrNull(id) }
 
     override suspend fun deleteById(id: Int) = withContext(Dispatchers.IO) { repository.deleteById(id) }
 

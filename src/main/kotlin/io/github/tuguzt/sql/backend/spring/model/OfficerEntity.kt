@@ -15,15 +15,15 @@ class OfficerEntity(
     override val id: Int = 0,
 
     @Column(name = "officer_name", length = 200)
-    override val name: String,
+    override var name: String,
 
     @ManyToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "officer_role_id", referencedColumnName = "officer_role_id")
-    override val role: OfficerRoleEntity,
+    override var role: OfficerRoleEntity,
 
     @ManyToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "organization_id", referencedColumnName = "organization_id")
-    override val organization: OrganizationEntity,
+    override var organization: OrganizationEntity,
 ) : Officer {
     override fun equals(other: Any?): Boolean {
         other ?: return false

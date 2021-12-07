@@ -12,11 +12,8 @@ class GameProjectVersionController(override val service: GameProjectVersionServi
     @GetMapping("all")
     override suspend fun getAll() = super.getAll()
 
-    @PostMapping("insert")
-    override suspend fun insert(@RequestBody entity: GameProjectVersionEntity) = super.insert(entity)
-
-    @PutMapping("update")
-    override suspend fun update(@RequestBody entity: GameProjectVersionEntity) = super.update(entity)
+    @PostMapping("save")
+    override suspend fun save(@RequestBody entity: GameProjectVersionEntity) = super.save(entity)
 
     @DeleteMapping("delete")
     override suspend fun delete(@RequestBody entity: GameProjectVersionEntity) = super.delete(entity)

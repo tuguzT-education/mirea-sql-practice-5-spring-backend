@@ -31,7 +31,7 @@ class GameProjectVersionEntity(
     override var metadata: String,
 
     @SerialName("game_project")
-    @ManyToOne(cascade = [CascadeType.ALL])
+    @ManyToOne(cascade = [CascadeType.MERGE], fetch = FetchType.EAGER)
     @JoinColumn(name = "game_project_id", referencedColumnName = "game_project_id")
     override var gameProject: GameProjectEntity,
 ) : GameProjectVersion {

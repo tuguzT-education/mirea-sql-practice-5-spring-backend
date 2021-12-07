@@ -25,12 +25,12 @@ class GameAssetEntity(
     @Column(name = "game_asset_data", unique = true)
     override var dataUri: String,
 
-    @ManyToOne(cascade = [CascadeType.ALL])
+    @ManyToOne(cascade = [CascadeType.MERGE], fetch = FetchType.EAGER)
     @JoinColumn(name = "game_asset_type_id", referencedColumnName = "game_asset_type_id")
     override var type: GameAssetTypeEntity,
 
     @SerialName("game_project")
-    @ManyToOne(cascade = [CascadeType.ALL])
+    @ManyToOne(cascade = [CascadeType.MERGE], fetch = FetchType.EAGER)
     @JoinColumn(name = "game_project_id", referencedColumnName = "game_project_id")
     override var gameProject: GameProjectEntity,
 ) : GameAsset {

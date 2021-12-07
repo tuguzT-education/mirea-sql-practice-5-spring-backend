@@ -28,7 +28,7 @@ class OrganizationEntity(
     @SerialName("test_document")
     @OneToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "test_document_id", referencedColumnName = "test_document_id")
-    override var testDocument: TestDocumentEntity?,
+    override var testDocument: TestDocumentEntity? = null,
 
     @SerialName("game_projects")
     @ManyToMany(cascade = [CascadeType.ALL], fetch = FetchType.EAGER)

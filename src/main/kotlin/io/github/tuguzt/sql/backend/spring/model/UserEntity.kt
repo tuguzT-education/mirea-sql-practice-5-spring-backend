@@ -24,7 +24,7 @@ class UserEntity(
 
     @OneToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "officer_id", referencedColumnName = "officer_id")
-    override var officer: OfficerEntity?,
+    override var officer: OfficerEntity? = null,
 ) : User {
     override fun equals(other: Any?): Boolean {
         other ?: return false

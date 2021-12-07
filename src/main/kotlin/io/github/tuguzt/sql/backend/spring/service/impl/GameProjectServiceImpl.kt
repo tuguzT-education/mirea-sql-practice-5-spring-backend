@@ -7,11 +7,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
+import javax.transaction.Transactional
 
 @Service
 class GameProjectServiceImpl(private val repository: GameProjectRepository) : GameProjectService {
     override suspend fun getAll() = withContext(Dispatchers.IO) { repository.findAll().toSet() }
 
+    @Transactional
     override suspend fun save(entity: GameProjectEntity) = withContext(Dispatchers.IO) { repository.save(entity) }
 
     override suspend fun delete(entity: GameProjectEntity) = withContext(Dispatchers.IO) { repository.delete(entity) }

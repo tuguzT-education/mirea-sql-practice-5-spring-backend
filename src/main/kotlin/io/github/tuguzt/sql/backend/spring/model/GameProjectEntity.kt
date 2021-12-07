@@ -25,10 +25,10 @@ class GameProjectEntity(
     override var documentation: GameProjectDocumentationEntity,
 
     @OneToMany(cascade = [CascadeType.ALL], mappedBy = "gameProject", fetch = FetchType.EAGER)
-    override val assets: Set<GameAssetEntity>,
+    override val assets: Set<GameAssetEntity> = setOf(),
 
     @OneToMany(cascade = [CascadeType.ALL], mappedBy = "gameProject", fetch = FetchType.EAGER)
-    override val versions: Set<GameProjectVersionEntity>,
+    override val versions: Set<GameProjectVersionEntity> = setOf(),
 
     @ManyToMany(cascade = [CascadeType.ALL], fetch = FetchType.EAGER)
     @JoinTable(
@@ -36,10 +36,10 @@ class GameProjectEntity(
         joinColumns = [JoinColumn(name = "game_project_id")],
         inverseJoinColumns = [JoinColumn(name = "game_project_platform_id")],
     )
-    override val platforms: Set<GameProjectPlatformEntity>,
+    override val platforms: Set<GameProjectPlatformEntity> = setOf(),
 
     @ManyToMany(cascade = [CascadeType.ALL], mappedBy = "gameProjects", fetch = FetchType.EAGER)
-    override val organizations: Set<OrganizationEntity>,
+    override val organizations: Set<OrganizationEntity> = setOf(),
 ) : GameProject {
     override fun equals(other: Any?): Boolean {
         other ?: return false

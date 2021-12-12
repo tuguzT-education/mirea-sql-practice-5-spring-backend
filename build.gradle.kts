@@ -30,7 +30,9 @@ configurations.all {
 
 dependencies {
     // Domain layer
-    implementation("com.github.tuguzT:sql_practice_5_domain:main-SNAPSHOT")
+    implementation("com.github.tuguzT:sql_practice_5_domain:main-SNAPSHOT") {
+        isChanging = true
+    }
 
     // Kotlin
     implementation(kotlin("reflect"))
@@ -44,10 +46,13 @@ dependencies {
     // Spring
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-security")
     runtimeOnly("org.postgresql:postgresql")
 
     // Third-Party
-    implementation("io.github.microutils:kotlin-logging-jvm:2.0.11")
+    implementation("io.github.microutils:kotlin-logging-jvm:2.1.0")
+    implementation("io.jsonwebtoken:jjwt:0.9.1")
+    implementation("org.bouncycastle:bcprov-jdk15on:1.64")
 
     // Testing
     testImplementation(kotlin("test"))

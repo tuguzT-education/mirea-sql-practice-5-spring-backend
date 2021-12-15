@@ -1,13 +1,11 @@
 package io.github.tuguzt.sql.backend.spring.model
 
 import io.github.tuguzt.sql.domain.model.GameAssetType
-import kotlinx.serialization.Serializable
 import org.springframework.data.util.ProxyUtils
 import javax.persistence.*
 
 @Entity
 @Table(name = "game_asset_type")
-@Serializable
 class GameAssetTypeEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

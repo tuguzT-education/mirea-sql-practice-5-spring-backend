@@ -1,14 +1,13 @@
 package io.github.tuguzt.sql.backend.spring.model
 
+import com.fasterxml.jackson.annotation.JsonBackReference
+import com.fasterxml.jackson.annotation.JsonProperty
 import io.github.tuguzt.sql.domain.model.GameProjectVersion
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
 import org.springframework.data.util.ProxyUtils
 import javax.persistence.*
 
 @Entity
 @Table(name = "game_project_version")
-@Serializable
 class GameProjectVersionEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,8 +29,9 @@ class GameProjectVersionEntity(
     @Column(name = "game_project_version_metadata", length = 255)
     override var metadata: String,
 
-    @SerialName("game_project")
-    @ManyToOne(cascade = [CascadeType.MERGE], fetch = FetchType.EAGER)
+    @JsonBackReference
+    @JsonProperty("game_project")
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "game_project_id", referencedColumnName = "game_project_id")
     override var gameProject: GameProjectEntity,
 ) : GameProjectVersion {

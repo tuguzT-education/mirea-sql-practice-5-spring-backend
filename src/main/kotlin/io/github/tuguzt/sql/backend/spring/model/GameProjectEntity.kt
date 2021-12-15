@@ -1,13 +1,12 @@
 package io.github.tuguzt.sql.backend.spring.model
 
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import io.github.tuguzt.sql.domain.model.GameProject
-import kotlinx.serialization.Serializable
 import org.springframework.data.util.ProxyUtils
 import javax.persistence.*
 
 @Entity
 @Table(name = "game_project")
-@Serializable
 class GameProjectEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +26,8 @@ class GameProjectEntity(
     @OneToMany(cascade = [CascadeType.MERGE], mappedBy = "gameProject", fetch = FetchType.EAGER)
     override val assets: Set<GameAssetEntity> = setOf(),
 
-    @OneToMany(cascade = [CascadeType.MERGE], mappedBy = "gameProject", fetch = FetchType.EAGER)
+    @JsonManagedReference
+    @OneToMany(mappedBy = "gameProject", fetch = FetchType.EAGER)
     override val versions: Set<GameProjectVersionEntity> = setOf(),
 
     @ManyToMany(cascade = [CascadeType.MERGE], fetch = FetchType.EAGER)

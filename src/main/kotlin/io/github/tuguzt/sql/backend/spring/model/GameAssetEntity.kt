@@ -1,14 +1,12 @@
 package io.github.tuguzt.sql.backend.spring.model
 
+import com.fasterxml.jackson.annotation.JsonProperty
 import io.github.tuguzt.sql.domain.model.GameAsset
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
 import org.springframework.data.util.ProxyUtils
 import javax.persistence.*
 
 @Entity
 @Table(name = "game_asset")
-@Serializable
 class GameAssetEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +19,7 @@ class GameAssetEntity(
     @Column(name = "game_asset_description")
     override var description: String,
 
-    @SerialName("data_uri")
+    @JsonProperty("data_uri")
     @Column(name = "game_asset_data", unique = true)
     override var dataUri: String,
 
@@ -29,7 +27,7 @@ class GameAssetEntity(
     @JoinColumn(name = "game_asset_type_id", referencedColumnName = "game_asset_type_id")
     override var type: GameAssetTypeEntity,
 
-    @SerialName("game_project")
+    @JsonProperty("game_project")
     @ManyToOne(cascade = [CascadeType.MERGE], fetch = FetchType.EAGER)
     @JoinColumn(name = "game_project_id", referencedColumnName = "game_project_id")
     override var gameProject: GameProjectEntity,

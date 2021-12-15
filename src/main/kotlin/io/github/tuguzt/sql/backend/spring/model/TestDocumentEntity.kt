@@ -1,13 +1,11 @@
 package io.github.tuguzt.sql.backend.spring.model
 
 import io.github.tuguzt.sql.domain.model.TestDocument
-import kotlinx.serialization.Serializable
 import org.springframework.data.util.ProxyUtils
 import javax.persistence.*
 
 @Entity
 @Table(name = "test_document")
-@Serializable
 class TestDocumentEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

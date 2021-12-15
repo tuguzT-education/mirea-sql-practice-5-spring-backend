@@ -1,14 +1,12 @@
 package io.github.tuguzt.sql.backend.spring.model
 
+import com.fasterxml.jackson.annotation.JsonProperty
 import io.github.tuguzt.sql.domain.model.User
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
 import org.springframework.data.util.ProxyUtils
 import javax.persistence.*
 
 @Entity
 @Table(name = "\"user\"")
-@Serializable
 class UserEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +16,7 @@ class UserEntity(
     @Column(name = "user_login", length = 20, unique = true)
     override var login: String,
 
-    @SerialName("password_encrypted")
+    @JsonProperty("password_encrypted")
     @Column(name = "user_password_encrypted", length = 100)
     override var passwordEncrypted: String,
 

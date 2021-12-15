@@ -1,13 +1,11 @@
 package io.github.tuguzt.sql.backend.spring.model
 
 import io.github.tuguzt.sql.domain.model.OrganizationType
-import kotlinx.serialization.Serializable
 import org.springframework.data.util.ProxyUtils
 import javax.persistence.*
 
 @Entity
 @Table(name = "organization_type")
-@Serializable
 class OrganizationTypeEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

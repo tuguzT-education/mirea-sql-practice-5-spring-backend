@@ -4,6 +4,8 @@ import io.github.tuguzt.sql.backend.spring.model.UserEntity
 import io.github.tuguzt.sql.backend.spring.repository.UserRepository
 import io.github.tuguzt.sql.backend.spring.security.JwtUtils
 import io.github.tuguzt.sql.backend.spring.security.UserDetailsService
+import io.github.tuguzt.sql.domain.interactor.checkPassword
+import io.github.tuguzt.sql.domain.interactor.checkUsername
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.springframework.http.HttpStatus
@@ -43,6 +45,7 @@ class AuthController(
 
     @PostMapping("register")
     suspend fun register(@RequestBody user: UserEntity): ResponseEntity<String> = try {
+        require(checkUsername(user.login) && checkPassword(user.passwordEncrypted))
         withContext(Dispatchers.IO) {
             require(userRepository.findByLogin(user.login) == null) {
                 "User with login ${user.login} already exists"

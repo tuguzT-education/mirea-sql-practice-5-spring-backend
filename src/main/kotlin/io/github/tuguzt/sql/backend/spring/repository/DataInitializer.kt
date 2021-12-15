@@ -41,7 +41,7 @@ class DataInitializer(
 
         val user = UserEntity(
             login = "tuguzT",
-            passwordEncrypted = passwordEncoder.encode("tugushev_timur"),
+            passwordEncrypted = passwordEncoder.encode("S0meBoDy0NCET0LDMe"),
         )
         userRepository.save(user)
     }
